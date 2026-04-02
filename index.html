@@ -7,168 +7,75 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
 
-    <meta property="og:title" content="👉 點擊開啟：領取你的專屬蓮花天使啟示">
-    <meta property="og:description" content="心中默唸一個問題，點進來抽取當下的靈性頻率。我剛抽到了啟示，換你試試看！✨">
+    <meta property="og:title" content="👉 點擊開啟：默唸你的困惑，領取蓮花啟示">
+    <meta property="og:description" content="閉上雙眼，誠心感應。當下跳出的數字，就是宇宙給你的回應。✨">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://axmy13.github.io/myoracle/">
     <meta property="og:image" content="https://axmy13.github.io/myoracle/logo.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
 
     <style>
         html, body {
-            margin: 0;
-            padding: 0;
-            background: #000;
-            color: #ffd700;
-            font-family: 'Cinzel', serif;
-            height: 100%;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            margin: 0; padding: 0; background: #000; color: #ffd700;
+            font-family: 'Cinzel', serif; height: 100%; overflow: hidden;
+            display: flex; justify-content: center; align-items: center;
         }
-
-        canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1;
-        }
-
+        canvas { position: fixed; top: 0; left: 0; z-index: 1; }
         .container {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            padding: 30px;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            box-shadow: 0 0 40px rgba(255, 215, 0, 0.15);
-            max-width: 90%;
-            width: 420px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            position: relative; z-index: 2; text-align: center; padding: 30px;
+            background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(12px);
+            border-radius: 20px; border: 1px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.2);
+            max-width: 90%; width: 420px;
+            display: flex; flex-direction: column; align-items: center;
         }
 
-        /* Logo 樣式：放大至 160px 更有震撼感 */
-        .logo-container {
-            margin-bottom: 15px;
-        }
         .logo-img {
-            width: 160px; 
-            height: auto;
+            width: 160px; height: auto;
             filter: drop-shadow(0 0 15px #ffd700);
             animation: logoPulse 6s infinite ease-in-out;
+            margin-bottom: 10px;
         }
-
         @keyframes logoPulse {
             0%, 100% { transform: scale(1); filter: drop-shadow(0 0 15px #ffd700); }
-            50% { transform: scale(1.08); filter: drop-shadow(0 0 25px #ffd700) brightness(1.2); }
+            50% { transform: scale(1.05); filter: drop-shadow(0 0 25px #ffd700) brightness(1.2); }
         }
 
         .number {
-            font-size: 95px;
-            font-weight: 700;
-            letter-spacing: 12px;
-            margin: 0;
-            text-shadow: 0 0 15px #ffd700, 0 0 30px #b8860b;
-            transition: all 0.5s ease;
-            line-height: 1.1;
+            font-size: 95px; font-weight: 700; letter-spacing: 12px;
+            margin: 10px 0; text-shadow: 0 0 20px #ffd700; line-height: 1;
         }
 
-        .keyword {
-            margin-top: 10px;
-            font-size: 20px;
-            letter-spacing: 4px;
-            color: #fff;
-            text-shadow: 0 0 10px #ffd700;
-            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
-            padding-bottom: 10px;
-            margin-bottom: 15px;
-            width: 85%;
-        }
-
-        /* 深度解說區塊 */
+        /* 儀式感引導文字樣式 */
         .description-box {
-            font-size: 15px;
-            color: rgba(255, 255, 255, 0.9);
-            letter-spacing: 1px;
+            font-size: 16px; /* 稍微放大 */
+            color: #fff;
+            letter-spacing: 2px;
             line-height: 1.8;
-            min-height: 70px;
-            opacity: 0;
-            transform: translateY(10px);
+            min-height: 80px;
+            margin-bottom: 25px;
+            padding: 0 10px;
             transition: all 0.5s ease;
-            text-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
-            margin-bottom: 30px;
-            padding: 0 15px;
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
         }
         .description-box.active {
-            opacity: 1;
-            transform: translateY(0);
+            color: rgba(255, 215, 0, 0.9); /* 抽中後文字變金色 */
         }
 
-        .buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            align-items: center;
-            width: 100%;
-        }
-
+        .buttons { display: flex; flex-direction: column; gap: 15px; width: 100%; align-items: center; }
         button {
-            padding: 14px 35px;
-            font-size: 16px;
-            font-family: 'Cinzel', serif;
-            cursor: pointer;
-            border-radius: 50px;
-            transition: 0.3s;
-            width: 100%;
-            max-width: 300px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 700;
+            padding: 14px 35px; font-size: 16px; font-family: 'Cinzel', serif;
+            cursor: pointer; border-radius: 50px; transition: 0.3s;
+            width: 100%; max-width: 280px; text-transform: uppercase;
+            letter-spacing: 2px; font-weight: 700;
         }
-
-        .draw-btn {
-            background: transparent;
-            color: #ffd700;
-            border: 1px solid #ffd700;
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
-        }
-
-        .draw-btn:hover {
-            background: rgba(255, 215, 0, 0.1);
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
-        }
-
-        .share-btn {
-            background: linear-gradient(45deg, #ffd700, #b8860b);
-            color: #000;
-            border: none;
-        }
-
-        .share-btn:hover {
-            transform: scale(1.03);
-            box-shadow: 0 0 25px rgba(255, 215, 0, 0.6);
-        }
-
+        .draw-btn { background: transparent; color: #ffd700; border: 1px solid #ffd700; }
+        .share-btn { background: linear-gradient(45deg, #ffd700, #b8860b); color: #000; border: none; }
         .footer-note {
-            position: absolute;
-            bottom: 20px;
-            font-size: 10px;
-            opacity: 0.3;
-            letter-spacing: 2px;
-            width: 100%;
-            text-align: center;
-            left: 0;
-            color: #fff;
+            position: absolute; bottom: 20px; font-size: 10px; opacity: 0.4;
+            letter-spacing: 2px; width: 100%; text-align: center; left: 0; color: #fff;
         }
     </style>
 </head>
-
 <body>
 
 <canvas id="bg"></canvas>
@@ -179,9 +86,10 @@
     </div>
 
     <div class="number" id="number">---</div>
-    <div class="keyword" id="keyword">Awaiting Inspiration</div>
     
-    <div class="description-box" id="description">當下即是啟示。抽一個天使數字，同步你的靈性頻率，感受蓮花的安寧能量。</div>
+    <div class="description-box" id="description">
+        請閉上雙眼，心中默唸困惑你的問題...<br>待內心平靜後，點擊下方抽取啟示。
+    </div>
 
     <div class="buttons">
         <button class="draw-btn" onclick="draw()">Draw | 抽取啟示</button>
@@ -189,69 +97,58 @@
     </div>
 </div>
 
-<div class="footer-note">CYBER-ZEN ORACLE © 2026 | ALIGN YOUR VIBE</div>
+<div class="footer-note">CYBER-ZEN ORACLE © 2026</div>
 
 <script>
 const data = [
-    {n:"111", k:"MANIFESTATION | 顯化", d:"「你的思想正在轉化為現實。保持高頻的正面思考，宇宙正準備顯化你的願景。」"},
-    {n:"222", k:"ALIGNMENT | 對齊", d:"「凡事皆有最好的安排。信任你的道路，你現在正處於對的時間與對的地點。」"},
-    {n:"333", k:"ASCENSION | 揚升", d:"「大師與守護者正圍繞著你。祂們正在提供導引與保護，確認你內在的靈性力量。」"},
-    {n:"444", k:"SANCTUARY | 庇護", d:"「宇宙正溫柔地擁抱你。你被無條件的愛與光所包圍，請放下焦慮，感受這份安寧。」"},
-    {n:"555", k:"EVOLUTION | 進化", d:"「巨大的變革即將到來。這是為了讓你進化成更好的版本，勇敢地迎接這個轉變吧。」"},
-    {n:"666", k:"REFLECT | 映照", d:"「是時候平衡你的靈性與物質生活了。回歸內在，清理多餘的執著，找回內心的平靜。」"},
-    {n:"777", k:"SYNCHRONICITY | 共時", d:"「幸運正與你共振。你與宇宙的脈動已同步，意想不到的奇蹟即將在生活中發生。」"},
-    {n:"888", k:"ABUNDANCE | 豐盛", d:"「無限的財富與機遇正流向你。這是對你過去努力的顯化，感恩並喜悅地顯化這份豐盛。」"},
-    {n:"999", k:"REBIRTH | 重生", d:"「一個階段的圓滿結束。這不是終點，而是另一個輝煌篇章的開始，準備好展翅高飛。」"}
+    {n:"111", d:"「你的思想正在轉化為現實。保持高頻的正面思考，宇宙正準備顯化你的願景。」"},
+    {n:"222", d:"「凡事皆有最好的安排。信任你的道路，你現在正處於對的時間與對的地點。」"},
+    {n:"333", d:"「大師與守護者正圍繞著你。祂們正在提供導引與保護，確認你內在的靈性力量。」"},
+    {n:"444", d:"「宇宙正溫柔地擁抱你。你被無條件的愛與光所包圍，請放下焦慮，感受這份安寧。」"},
+    {n:"555", d:"「巨大的變革即將到來。這是為了讓你進化成更好的版本，勇敢地迎接這個轉變吧。」"},
+    {n:"666", d:"「是時候平衡你的靈性與物質生活了。回歸內在，清理多餘的執著，找回內心的平靜。」"},
+    {n:"777", d:"「幸運正與你共振。你與宇宙的脈動已同步，意想不到的奇蹟即將在生活中發生。」"},
+    {n:"888", d:"「無限的財富與機遇正流向你。這是對你過去努力的顯化，感恩並喜悅地顯化這份豐盛。」"},
+    {n:"999", d:"「一個階段的圓滿結束。這不是終點，而是另一個輝煌篇章的開始，準備好展翅高飛。」"}
 ];
 
 const numberEl = document.getElementById("number");
-const keywordEl = document.getElementById("keyword");
 const descriptionEl = document.getElementById("description");
 
 function draw(){
-    descriptionEl.classList.remove("active");
+    descriptionEl.style.opacity = "0.3"; // 抽取時文字變淡，增加期待感
     let count = 0;
     const interval = setInterval(() => {
         numberEl.innerText = Math.floor(Math.random()*900 + 100);
         count++;
-        if(count > 10) {
+        if(count > 12) {
             clearInterval(interval);
             const item = data[Math.floor(Math.random()*data.length)];
             numberEl.innerText = item.n;
-            keywordEl.innerText = item.k;
-            descriptionEl.innerText = item.d;
-            setTimeout(() => { descriptionEl.classList.add("active"); }, 200);
+            descriptionEl.innerHTML = item.d; // 換成結果文字
+            descriptionEl.style.opacity = "1";
+            descriptionEl.classList.add("active");
             triggerEffect();
         }
-    }, 50);
+    }, 60);
 }
 
 function share(){
     const currentNumber = numberEl.innerText;
-    if(currentNumber === "---") {
-        alert("請先抽取你的天使數字再分享喔！");
-        return;
-    }
-    const currentDescription = descriptionEl.innerText;
+    if(currentNumber === "---") { alert("請先抽取你的啟示數字喔！"); return; }
     const url = window.location.href;
-    // 更新分享文字，增加引導感
-    const shareText = "✨ 我在 Cyber-Zen 抽到了啟示數字 " + currentNumber + "！\n「" + currentDescription + "」\n👉 點擊圖片也來領取你的專屬祝福吧！";
+    const shareText = "✨ 我在 Cyber-Zen 抽到了啟示數字 " + currentNumber + "！\n" + descriptionEl.innerText + "\n👉 點擊圖片，默唸問題領取你的祝福！";
     const fbUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(shareText)}`;
     window.open(fbUrl, '_blank');
 }
 
-// 保持原有的背景動效
+/* 背景動效保持不變 */
 const canvas = document.getElementById("bg");
 const ctx = canvas.getContext("2d");
 let animation;
-
 resize();
 window.addEventListener("resize", resize);
-function resize(){
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
-
+function resize(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
 function triggerEffect(){
     cancelAnimationFrame(animation);
     const type = Math.floor(Math.random()*4);
@@ -260,80 +157,57 @@ function triggerEffect(){
     if(type === 2) spiralEffect();
     if(type === 3) pulseEffect();
 }
-
 function pillarEffect(){
     let y = canvas.height;
     function animate(){
-        ctx.fillStyle = "rgba(0,0,0,0.1)";
-        ctx.fillRect(0,0,canvas.width,canvas.height);
-        ctx.strokeStyle = "#ffd700";
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.moveTo(canvas.width/2, y);
-        ctx.lineTo(canvas.width/2, y-200);
-        ctx.stroke();
-        y -= 20;
-        if(y < 0) y = canvas.height;
+        ctx.fillStyle = "rgba(0,0,0,0.1)"; ctx.fillRect(0,0,canvas.width,canvas.height);
+        ctx.strokeStyle = "#ffd700"; ctx.beginPath();
+        ctx.moveTo(canvas.width/2, y); ctx.lineTo(canvas.width/2, y-200); ctx.stroke();
+        y -= 20; if(y < 0) y = canvas.height;
         animation = requestAnimationFrame(animate);
     }
     animate();
 }
-
 function infinityEffect(){
     let t = 0;
     function animate(){
-        ctx.fillStyle = "rgba(0,0,0,0.05)";
-        ctx.fillRect(0,0,canvas.width,canvas.height);
-        ctx.strokeStyle = "#ffd700";
-        ctx.beginPath();
+        ctx.fillStyle = "rgba(0,0,0,0.05)"; ctx.fillRect(0,0,canvas.width,canvas.height);
+        ctx.strokeStyle = "#ffd700"; ctx.beginPath();
         for(let i=0;i<100;i++){
             let x = canvas.width/2 + Math.sin(i*0.2+t)*200;
             let y = canvas.height/2 + Math.cos(i*0.1+t)*100;
             ctx.lineTo(x,y);
         }
-        ctx.stroke();
-        t += 0.02;
-        animation = requestAnimationFrame(animate);
+        ctx.stroke(); t += 0.02; animation = requestAnimationFrame(animate);
     }
     animate();
 }
-
 function spiralEffect(){
     let angle = 0;
     function animate(){
-        ctx.fillStyle = "rgba(0,0,0,0.08)";
-        ctx.fillRect(0,0,canvas.width,canvas.height);
-        ctx.beginPath();
-        ctx.strokeStyle = "#ffd700";
+        ctx.fillStyle = "rgba(0,0,0,0.08)"; ctx.fillRect(0,0,canvas.width,canvas.height);
+        ctx.beginPath(); ctx.strokeStyle = "#ffd700";
         for(let i=0;i<150;i++){
             let r = i * 2;
             let x = canvas.width/2 + r * Math.cos(i*0.15 + angle);
             let y = canvas.height/2 + r * Math.sin(i*0.15 + angle);
             ctx.lineTo(x,y);
         }
-        ctx.stroke();
-        angle += 0.03;
-        animation = requestAnimationFrame(animate);
+        ctx.stroke(); angle += 0.03; animation = requestAnimationFrame(animate);
     }
     animate();
 }
-
 function pulseEffect(){
     let radius = 0;
     function animate(){
-        ctx.fillStyle = "rgba(0,0,0,0.1)";
-        ctx.fillRect(0,0,canvas.width,canvas.height);
-        ctx.beginPath();
-        ctx.arc(canvas.width/2, canvas.height/2, radius, 0, Math.PI*2);
+        ctx.fillStyle = "rgba(0,0,0,0.1)"; ctx.fillRect(0,0,canvas.width,canvas.height);
+        ctx.beginPath(); ctx.arc(canvas.width/2, canvas.height/2, radius, 0, Math.PI*2);
         ctx.strokeStyle = "rgba(255, 215, 0, " + (1 - radius/500) + ")";
-        ctx.stroke();
-        radius += 4;
-        if(radius > 500) radius = 0;
+        ctx.stroke(); radius += 4; if(radius > 500) radius = 0;
         animation = requestAnimationFrame(animate);
     }
     animate();
 }
 </script>
-
 </body>
 </html>
