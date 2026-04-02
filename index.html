@@ -1,7 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-    https://axmy13.github.io/myoracle/
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Cyber-Zen Oracle | 蓮花天使啟示錄</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+
+    <meta property="og:title" content="👉 點擊開啟：領取你的專屬蓮花天使啟示">
+    <meta property="og:description" content="心中默唸一個問題，點進來抽取當下的靈性頻率。我剛抽到了啟示，換你試試看！✨">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://axmy13.github.io/myoracle/">
+    <meta property="og:image" content="https://axmy13.github.io/myoracle/logo.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
 
     <style>
         html, body {
@@ -29,71 +41,69 @@
             z-index: 2;
             text-align: center;
             padding: 30px;
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(8px);
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
             border-radius: 20px;
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.15);
             max-width: 90%;
-            width: 400px;
+            width: 420px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        /* 優化：Logo 的顯示與動畫 */
+        /* Logo 樣式：放大至 160px 更有震撼感 */
         .logo-container {
-            margin-bottom: 5px;
-            opacity: 1;
-            transition: opacity 0.5s ease;
+            margin-bottom: 15px;
         }
         .logo-img {
-            width: 80px; /* 控制 Logo 大小 */
+            width: 160px; 
             height: auto;
-            filter: drop-shadow(0 0 10px #ffd700);
+            filter: drop-shadow(0 0 15px #ffd700);
             animation: logoPulse 6s infinite ease-in-out;
         }
 
         @keyframes logoPulse {
-            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 10px #ffd700); }
-            50% { transform: scale(1.05); filter: drop-shadow(0 0 15px #ffd700) brightness(1.1); }
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 15px #ffd700); }
+            50% { transform: scale(1.08); filter: drop-shadow(0 0 25px #ffd700) brightness(1.2); }
         }
 
         .number {
-            font-size: 90px;
+            font-size: 95px;
             font-weight: 700;
             letter-spacing: 12px;
             margin: 0;
             text-shadow: 0 0 15px #ffd700, 0 0 30px #b8860b;
             transition: all 0.5s ease;
-            line-height: 1;
+            line-height: 1.1;
         }
 
         .keyword {
-            margin-top: 15px;
+            margin-top: 10px;
             font-size: 20px;
             letter-spacing: 4px;
             color: #fff;
             text-shadow: 0 0 10px #ffd700;
             border-bottom: 1px solid rgba(255, 215, 0, 0.2);
             padding-bottom: 10px;
-            margin-bottom: 10px;
-            width: 80%;
+            margin-bottom: 15px;
+            width: 85%;
         }
 
-        /* 優化：深度解說區塊樣式 */
+        /* 深度解說區塊 */
         .description-box {
-            font-size: 14px;
+            font-size: 15px;
             color: rgba(255, 255, 255, 0.9);
             letter-spacing: 1px;
             line-height: 1.8;
-            min-height: 60px; /* 預留文字空間 */
+            min-height: 70px;
             opacity: 0;
             transform: translateY(10px);
             transition: all 0.5s ease;
             text-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
-            margin-bottom: 25px;
-            padding: 0 10px;
+            margin-bottom: 30px;
+            padding: 0 15px;
         }
         .description-box.active {
             opacity: 1;
@@ -109,35 +119,35 @@
         }
 
         button {
-            padding: 12px 35px;
-            font-size: 15px;
+            padding: 14px 35px;
+            font-size: 16px;
             font-family: 'Cinzel', serif;
             cursor: pointer;
             border-radius: 50px;
             transition: 0.3s;
             width: 100%;
-            max-width: 280px;
+            max-width: 300px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            font-weight: 700;
         }
 
         .draw-btn {
             background: transparent;
             color: #ffd700;
             border: 1px solid #ffd700;
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
         }
 
         .draw-btn:hover {
             background: rgba(255, 215, 0, 0.1);
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
         }
 
         .share-btn {
             background: linear-gradient(45deg, #ffd700, #b8860b);
             color: #000;
             border: none;
-            font-weight: 700;
         }
 
         .share-btn:hover {
@@ -154,6 +164,7 @@
             width: 100%;
             text-align: center;
             left: 0;
+            color: #fff;
         }
     </style>
 </head>
@@ -163,7 +174,7 @@
 <canvas id="bg"></canvas>
 
 <div class="container">
-    <div class="logo-container" id="logoContainer">
+    <div class="logo-container">
         <img src="logo.png" alt="Lotus Logo" class="logo-img">
     </div>
 
@@ -178,10 +189,9 @@
     </div>
 </div>
 
-<div class="footer-note">CYBER-ZEN ORACLE © 2026</div>
+<div class="footer-note">CYBER-ZEN ORACLE © 2026 | ALIGN YOUR VIBE</div>
 
 <script>
-// 優化：深度解說文字 data
 const data = [
     {n:"111", k:"MANIFESTATION | 顯化", d:"「你的思想正在轉化為現實。保持高頻的正面思考，宇宙正準備顯化你的願景。」"},
     {n:"222", k:"ALIGNMENT | 對齊", d:"「凡事皆有最好的安排。信任你的道路，你現在正處於對的時間與對的地點。」"},
@@ -199,9 +209,7 @@ const keywordEl = document.getElementById("keyword");
 const descriptionEl = document.getElementById("description");
 
 function draw(){
-    // 隱藏舊的描述
     descriptionEl.classList.remove("active");
-
     let count = 0;
     const interval = setInterval(() => {
         numberEl.innerText = Math.floor(Math.random()*900 + 100);
@@ -211,7 +219,6 @@ function draw(){
             const item = data[Math.floor(Math.random()*data.length)];
             numberEl.innerText = item.n;
             keywordEl.innerText = item.k;
-            // 更新並浮現新的深度描述
             descriptionEl.innerText = item.d;
             setTimeout(() => { descriptionEl.classList.add("active"); }, 200);
             triggerEffect();
@@ -227,14 +234,13 @@ function share(){
     }
     const currentDescription = descriptionEl.innerText;
     const url = window.location.href;
-    // 分享時帶上數字與簡短解說
-    const shareText = "我抽取了蓮花天使數字 " + currentNumber + "！" + currentDescription;
+    // 更新分享文字，增加引導感
+    const shareText = "✨ 我在 Cyber-Zen 抽到了啟示數字 " + currentNumber + "！\n「" + currentDescription + "」\n👉 點擊圖片也來領取你的專屬祝福吧！";
     const fbUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(shareText)}`;
     window.open(fbUrl, '_blank');
 }
 
-/* ===== Canvas Effects (保持原有的動效邏輯並稍作優化) ===== */
-
+// 保持原有的背景動效
 const canvas = document.getElementById("bg");
 const ctx = canvas.getContext("2d");
 let animation;
