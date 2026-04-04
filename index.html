@@ -1,166 +1,123 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Cyber-Zen Oracle | 鳳凰天使啟示錄</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>辛言解憂站 | 數字頻率感應</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
-
-    <meta property="og:title" content="👉 點擊開啟：默唸你的困惑，領取鳳凰啟示">
-    <meta property="og:description" content="閉上雙眼，誠心感應。當下跳出的數字，就是宇宙給你的回應。✨">
+    <meta property="og:title" content="👉 點擊開啟：領取你的鳳凰啟示">
+    <meta property="og:description" content="閉上雙眼，感應宇宙頻率。當下跳出的數字，就是給你的回應。">
+    <meta property="og:url" content="https://axmy13.github.io/myoracle/">
+    <meta property="og:image" content="https://axmy13.github.io/myoracle/logo.png">
 
     <style>
-        html, body {
-            margin: 0; padding: 0; background: #000; color: #ffd700;
-            font-family: 'Cinzel', serif; height: 100%; overflow: hidden;
-            display: flex; flex-direction: column; align-items: center;
+        body {
+            background-color: #0a0a0a;
+            color: #d4af37;
+            font-family: "Microsoft JhengHei", sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
         }
-
-        /* 新增：品牌導航欄 */
-        nav { 
-            position: fixed; top: 0; width: 100%; z-index: 100; 
-            display: flex; justify-content: space-around; padding: 15px 0;
-            background: rgba(0,0,0,0.8); border-bottom: 1px solid rgba(255, 215, 0, 0.2);
-        }
-        nav a { color: #ffd700; text-decoration: none; font-size: 0.8rem; letter-spacing: 1px; font-weight: bold; }
-
-        canvas { position: fixed; top: 0; left: 0; z-index: 1; }
-
         .container {
-            position: relative; z-index: 2; text-align: center; padding: 30px;
-            background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(12px);
-            border-radius: 20px; border: 1px solid rgba(255, 215, 0, 0.3);
-            box-shadow: 0 0 40px rgba(255, 215, 0, 0.2);
-            max-width: 90%; width: 420px; margin-top: 80px;
-            display: flex; flex-direction: column; align-items: center;
+            text-align: center;
+            background: rgba(20, 20, 20, 0.9);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid #d4af37;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+            width: 85%;
+            max-width: 400px;
         }
-
-        /* 使用火鳳凰圖片 */
-        .logo-img {
-            width: 150px; height: auto;
-            filter: drop-shadow(0 0 15px #ffd700);
-            animation: logoPulse 6s infinite ease-in-out;
-            margin-bottom: 10px;
+        .logo {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 15px;
+            border-radius: 50%;
+            border: 1px solid #d4af37;
         }
-        @keyframes logoPulse {
-            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 15px #ffd700); }
-            50% { transform: scale(1.05); filter: drop-shadow(0 0 25px #ffd700) brightness(1.2); }
+        #result {
+            font-size: 4rem;
+            font-weight: bold;
+            margin: 10px 0;
+            transition: 0.5s;
         }
-
-        .number {
-            font-size: 90px; font-weight: 700; letter-spacing: 12px;
-            margin: 10px 0; text-shadow: 0 0 20px #ffd700; line-height: 1;
+        #message {
+            font-size: 1.1rem;
+            color: #fff;
+            min-height: 3em;
+            margin-bottom: 20px;
+            line-height: 1.5;
         }
-
-        .description-box {
-            font-size: 16px; color: #fff; letter-spacing: 2px; line-height: 1.8;
-            min-height: 80px; margin-bottom: 25px; padding: 0 10px;
-            transition: all 0.5s ease; text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+        .btn-gold {
+            background: linear-gradient(45deg, #d4af37, #f2d472);
+            color: #000;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
         }
-
-        .buttons { display: flex; flex-direction: column; gap: 15px; width: 100%; align-items: center; }
-        button {
-            padding: 14px 35px; font-size: 16px; font-family: 'Cinzel', serif;
-            cursor: pointer; border-radius: 50px; transition: 0.3s;
-            width: 100%; max-width: 280px; text-transform: uppercase;
-            letter-spacing: 2px; font-weight: 700;
+        .angel-effect {
+            color: #fff;
+            text-shadow: 0 0 20px #d4af37;
         }
-        .draw-btn { background: transparent; color: #ffd700; border: 1px solid #ffd700; }
-        .share-btn { background: linear-gradient(45deg, #ffd700, #b8860b); color: #000; border: none; }
-        
-        .footer-note { position: absolute; bottom: 20px; font-size: 10px; opacity: 0.4; letter-spacing: 2px; color: #fff; z-index: 2; }
     </style>
 </head>
 <body>
 
-<nav>
-    <a href="https://www.facebook.com/profile.php?id=61582018845158">🏠 辛言解憂站 (FB)</a>
-    <a href="https://axmy13.github.io/my-oracle/">🔢 數字感應</a>
-    <a href="https://axmy13.github.io/tarot-/">🔮 靈境塔羅</a>
-</nav>
-
-<canvas id="bg"></canvas>
-
 <div class="container">
-    <img src="1000056891.png" alt="Phoenix Logo" class="logo-img">
-    <div class="number" id="number">---</div>
-    <div class="description-box" id="description">
-        請閉上雙眼，心中默唸困惑你的問題...<br>宇宙的天使頻率將隨日期為你感應。
-    </div>
-    <div class="buttons">
-        <button class="draw-btn" onclick="draw()">Draw | 抽取啟示</button>
-        <button class="share-btn" onclick="share()">Share Blessing | 分享好運</button>
-    </div>
+    <img src="logo.png" alt="Logo" class="logo">
+    <h1 style="font-size: 1.4rem;">辛言解憂站</h1>
+    
+    <div id="result">???</div>
+    <div id="message">默唸你的困惑，按下按鈕開啟感應</div>
+
+    <button class="btn-gold" onclick="generateNumber()">✨ 開啟感應 ✨</button>
 </div>
 
-<div class="footer-note">CYBER-ZEN ORACLE © 2026</div>
-
 <script>
-// 保持你的天使數字數據
-const data = [
-    {n:"111", d:"「你的思想正在轉化為現實。保持高頻的正面思考，宇宙正準備顯化你的願景。」"},
-    {n:"222", d:"「凡事皆有最好的安排。信任你的道路，你現在正處於對的時間與對的地點。」"},
-    {n:"333", d:"「大師與守護者正圍繞著你。祂們正在提供導引與保護，確認你內在的靈性力量。」"},
-    {n:"444", d:"「宇宙正溫柔地擁抱你。你被無條件的愛與光所包圍，請放下焦慮，感受這份安寧。」"},
-    {n:"555", d:"「巨大的變革即將到來。這是為了讓你進化成更好的版本，勇敢地迎接這個轉變吧。」"},
-    {n:"666", d:"「是時候平衡你的靈性與物質生活了。回歸內在，清理多餘的執著，找回內心的平靜。」"},
-    {n:"777", d:"「幸運正與你共振。你與宇宙的脈動已同步，意想不到的奇蹟即將在生活中發生。」"},
-    {n:"888", d:"「無限的財富與機遇正流向你。這是對你過去努力的顯化，感恩並喜悅地顯化這份豐盛。」"},
-    {n:"999", d:"「一個階段的圓滿結束。這不是終點，而是另一個輝煌篇章的開始，準備好展翅高飛。」"}
-];
+    const interpretations = {
+        angel: "這是強大的天使數字！宇宙正全力支持你的決定，保持正念。",
+        high: "頻率持續上升中。近期適合開啟新計畫，勇敢踏出第一步。",
+        mid: "波動平穩。當下需要的是耐心，美好的事物正在醞釀中。",
+        low: "回歸內在。這是一個提醒你放慢腳步、傾聽內心聲音的時刻。",
+        pair: "雙生頻率現蹤。留意身邊的合作機會或情感連結。"
+    };
 
-const numberEl = document.getElementById("number");
-const descriptionEl = document.getElementById("description");
+    function generateNumber() {
+        const resultDiv = document.getElementById('result');
+        const msgDiv = document.getElementById('message');
+        
+        // 產生 100-999 隨機數
+        const num = Math.floor(Math.random() * 900) + 100;
+        resultDiv.innerText = num;
 
-function draw(){
-    descriptionEl.style.opacity = "0.3";
-    let count = 0;
-    const interval = setInterval(() => {
-        numberEl.innerText = Math.floor(Math.random()*900 + 100);
-        count++;
-        if(count > 12) {
-            clearInterval(interval);
-            
-            // 加入日期種子，讓每天抽到的「運勢機率」不同
-            let today = new Date();
-            let dateSeed = today.getFullYear() + (today.getMonth()+1) + today.getDate();
-            let index = (Math.floor(Math.random() * data.length) + dateSeed) % data.length;
-
-            const item = data[index];
-            numberEl.innerText = item.n;
-            descriptionEl.innerHTML = item.d;
-            descriptionEl.style.opacity = "1";
-            triggerEffect();
+        // 邏輯判斷：文字隨數字改變
+        if (num % 111 === 0) {
+            // 天使數字 (111, 222...)
+            resultDiv.className = 'angel-effect';
+            msgDiv.innerText = interpretations.angel;
+        } else if (num % 10 === (Math.floor(num / 10) % 10)) {
+            // 後兩位相同 (如 122, 588)
+            resultDiv.className = '';
+            msgDiv.innerText = interpretations.pair;
+        } else if (num > 700) {
+            resultDiv.className = '';
+            msgDiv.innerText = interpretations.high;
+        } else if (num > 400) {
+            resultDiv.className = '';
+            msgDiv.innerText = interpretations.mid;
+        } else {
+            resultDiv.className = '';
+            msgDiv.innerText = interpretations.low;
         }
-    }, 60);
-}
-
-function share(){
-    const currentNumber = numberEl.innerText;
-    if(currentNumber === "---") { alert("請先抽取你的啟示數字喔！"); return; }
-    const url = window.location.href;
-    const shareText = "✨ 我在 Cyber-Zen 抽到了啟示數字 " + currentNumber + "！\n👉 點擊圖片，領取你的專屬祝福！";
-    const fbUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(shareText)}`;
-    window.open(fbUrl, '_blank');
-}
-
-/* 背景動效代碼保持不變... (省略後面繪圖代碼以節省空間) */
-const canvas = document.getElementById("bg");
-const ctx = canvas.getContext("2d");
-let animation;
-resize();
-window.addEventListener("resize", resize);
-function resize(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-function triggerEffect(){
-    cancelAnimationFrame(animation);
-    const type = Math.floor(Math.random()*4);
-    if(type === 0) pillarEffect();
-    if(type === 1) infinityEffect();
-    if(type === 2) spiralEffect();
-    if(type === 3) pulseEffect();
-}
-// ... 剩餘的特效函數按你原本的代碼補上即可 ...
+    }
 </script>
+
 </body>
 </html>
