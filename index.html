@@ -5,117 +5,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>辛言解憂站 | 數字頻率感應</title>
 
-    <meta property="og:title" content="👉 點擊開啟：領取你的鳳凰啟示">
-    <meta property="og:description" content="閉上雙眼，感應宇宙頻率。當下跳出的數字，就是給你的回應。">
+    <meta property="og:title" content="👉 領取你的鳳凰啟示：數字頻率感應">
+    <meta property="og:description" content="閉上雙眼，感應宇宙。當下跳出的數字，就是給你的解憂回應。">
     <meta property="og:url" content="https://axmy13.github.io/myoracle/">
     <meta property="og:image" content="https://axmy13.github.io/myoracle/logo.png">
 
     <style>
-        body {
-            background-color: #0a0a0a;
-            color: #d4af37;
-            font-family: "Microsoft JhengHei", sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .container {
-            text-align: center;
-            background: rgba(20, 20, 20, 0.9);
-            padding: 30px;
-            border-radius: 20px;
-            border: 1px solid #d4af37;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
-            width: 85%;
-            max-width: 400px;
-        }
-        .logo {
-            width: 100px;
-            height: 100px;
-            margin-bottom: 15px;
-            border-radius: 50%;
-            border: 1px solid #d4af37;
-        }
-        #result {
-            font-size: 4rem;
-            font-weight: bold;
-            margin: 10px 0;
-            transition: 0.5s;
-        }
-        #message {
-            font-size: 1.1rem;
-            color: #fff;
-            min-height: 3em;
-            margin-bottom: 20px;
-            line-height: 1.5;
-        }
-        .btn-gold {
-            background: linear-gradient(45deg, #d4af37, #f2d472);
-            color: #000;
-            border: none;
-            padding: 12px 30px;
-            font-size: 1.1rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: bold;
-            width: 100%;
-        }
-        .angel-effect {
-            color: #fff;
-            text-shadow: 0 0 20px #d4af37;
-        }
+        body { background-color: #0a0a0a; color: #d4af37; font-family: "Microsoft JhengHei", sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .container { text-align: center; background: rgba(20, 20, 20, 0.95); padding: 30px; border-radius: 20px; border: 1px solid #d4af37; box-shadow: 0 0 30px rgba(212, 175, 55, 0.2); width: 85%; max-width: 400px; }
+        .logo { width: 90px; height: 90px; margin-bottom: 10px; border-radius: 50%; border: 1px solid #d4af37; }
+        #result { font-size: 4.5rem; font-weight: bold; margin: 15px 0; min-height: 100px; display: flex; align-items: center; justify-content: center; }
+        #message { font-size: 1rem; color: #e0e0e0; min-height: 4em; margin-bottom: 20px; line-height: 1.6; padding: 0 10px; }
+        .btn-gold { background: linear-gradient(45deg, #d4af37, #f2d472); color: #000; border: none; padding: 12px 0; font-size: 1.1rem; border-radius: 50px; cursor: pointer; font-weight: bold; width: 100%; margin-bottom: 10px; }
+        .btn-share { background: transparent; color: #d4af37; border: 1px solid #d4af37; padding: 8px 0; font-size: 0.9rem; border-radius: 50px; cursor: pointer; width: 100%; text-decoration: none; display: inline-block; margin-top: 5px; }
+        .nav-link { color: #888; text-decoration: none; font-size: 0.8rem; margin-top: 20px; display: block; }
+        .angel { color: #fff; text-shadow: 0 0 20px #d4af37; animation: pulse 1s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
     </style>
 </head>
 <body>
 
 <div class="container">
     <img src="logo.png" alt="Logo" class="logo">
-    <h1 style="font-size: 1.4rem;">辛言解憂站</h1>
+    <h2 style="margin: 0; font-size: 1.2rem;">解憂占卜站</h2>
     
     <div id="result">???</div>
-    <div id="message">默唸你的困惑，按下按鈕開啟感應</div>
+    <div id="message">請先平靜內心，默唸困惑...</div>
 
-    <button class="btn-gold" onclick="generateNumber()">✨ 開啟感應 ✨</button>
+    <button class="btn-gold" onclick="startOracle()">✨ 開始感應頻率 ✨</button>
+    <button class="btn-share" onclick="shareToFB()">📢 分享啟示到臉書</button>
+    
+    <a href="https://axmy13.github.io/" class="nav-link">← 返回辛言品牌專頁</a>
 </div>
 
 <script>
-    const interpretations = {
-        angel: "這是強大的天使數字！宇宙正全力支持你的決定，保持正念。",
-        high: "頻率持續上升中。近期適合開啟新計畫，勇敢踏出第一步。",
-        mid: "波動平穩。當下需要的是耐心，美好的事物正在醞釀中。",
-        low: "回歸內在。這是一個提醒你放慢腳步、傾聽內心聲音的時刻。",
-        pair: "雙生頻率現蹤。留意身邊的合作機會或情感連結。"
+    const data = {
+        action: ["宇宙提示你要", "現在是時候去", "請嘗試著", "你被賦予力量去", "建議你保持"],
+        target: ["放下過去的執著", "迎接即將到來的機會", "信任你的直覺判斷", "尋找內心的平靜", "與身邊的人和解", "大膽嘗試新的計畫"],
+        ending: ["，一切自有最好的安排。", "，鳳凰終將浴火重生。", "，好運就在轉角處。", "，你的頻率正在提升。"]
     };
 
-    function generateNumber() {
-        const resultDiv = document.getElementById('result');
-        const msgDiv = document.getElementById('message');
-        
-        // 產生 100-999 隨機數
+    function startOracle() {
+        const res = document.getElementById('result');
+        const msg = document.getElementById('message');
         const num = Math.floor(Math.random() * 900) + 100;
-        resultDiv.innerText = num;
+        
+        res.innerText = num;
+        res.className = (num % 111 === 0) ? 'angel' : '';
 
-        // 邏輯判斷：文字隨數字改變
+        // 隨機組合文字，創造數百種可能
+        const a = data.action[Math.floor(Math.random() * data.action.length)];
+        const t = data.target[Math.floor(Math.random() * data.target.length)];
+        const e = data.ending[Math.floor(Math.random() * data.ending.length)];
+        
         if (num % 111 === 0) {
-            // 天使數字 (111, 222...)
-            resultDiv.className = 'angel-effect';
-            msgDiv.innerText = interpretations.angel;
-        } else if (num % 10 === (Math.floor(num / 10) % 10)) {
-            // 後兩位相同 (如 122, 588)
-            resultDiv.className = '';
-            msgDiv.innerText = interpretations.pair;
-        } else if (num > 700) {
-            resultDiv.className = '';
-            msgDiv.innerText = interpretations.high;
-        } else if (num > 400) {
-            resultDiv.className = '';
-            msgDiv.innerText = interpretations.mid;
+            msg.innerHTML = `<b style="color:#d4af37">【天使數字】</b><br>強大的祝福！${a}${t}${e}`;
         } else {
-            resultDiv.className = '';
-            msgDiv.innerText = interpretations.low;
+            msg.innerText = `${a}${t}${e}`;
         }
+    }
+
+    function shareToFB() {
+        const url = encodeURIComponent(window.location.href);
+        const title = encodeURIComponent("我在解憂占卜站領取了專屬啟示，快來感應你的頻率！");
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${title}`, '_blank');
     }
 </script>
 
